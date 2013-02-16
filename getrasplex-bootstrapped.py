@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import os,sys,urllib2,platform,re,datetime
 
 
 MIRROR_FOLDER="/release/"
@@ -115,14 +114,14 @@ def unmount(drive): # unmounts drive
         print 'Error: the drive couldn\'t be unmounted, exiting...'
         sys.exit()
 
-def mount(drive): # mounts drive to mount_raspbmc/
+def mount(drive): # mounts drive to mount_rasplex/
     print "Mounting the drive for post-installation settings"
     if mac:
-        os.system("diskutil mount -mountPoint mount_raspbmc/ " + drive + "s1")
+        os.system("diskutil mount -mountPoint mount_rasplex/ " + drive + "s1")
     else:
         if os.path.exists(drive + "p1"):
             drive = drive + "p"
-        os.system("mount " + drive + "1  mount_raspbmc/")
+        os.system("mount " + drive + "1  mount_rasplex/")
 
 def imagedevice(drive, imagefile):
     print ""
@@ -137,30 +136,6 @@ def imagedevice(drive, imagefile):
         # Linux kernel must reload the partition table
         os.system("blockdev --rereadpt " + drive)
     print "Installation complete."
-
-
-def raspbmcinstaller():
-    # configure the device to image
-    disk = deviceinput()
-    # should downloading and extraction be done?
-    redl = "" # so that redl == "yes" doesn't throw an error
-    if os.path.exists("installer.img.gz"):
-        redl = query_yes_no("It appears that the rasplex installation image has already been downloaded. Would you like to re-download it?", "no")
-    if redl == "yes" or not os.path.exists("installer.img.gz"):
-        # call the dl    
-        download("http://download.raspbmc.com/downloads/bin/ramdistribution/installer.img.gz")
-    # now we can image
-    if mac:
-        regex = re.compile('/dev/r?(disk[0-9]+?)')
-        try:
-            disk = re.sub('r?disk', 'rdisk', regex.search(disk).group(0))
-        except:
-            print "Malformed disk specification -> ", disk
-            sys.exit()
-    imagedevice(disk, "installer.img.gz")
-    # post-install options, if supported by os
-    print "rasplex is now ready to finish setup on your Pi, please insert the SD card with an active internet connection"
-
 
 def autodetectMirrors( dl=None):
 
@@ -194,6 +169,31 @@ def getCurrentFromMirrors( mirrors ):
     
     return bestmirror
 
+def rasplexinstaller(current):
+    # configure the device to image
+    disk = deviceinput()
+    # should downloading and extraction be done?
+    redl = "" # so that redl == "yes" doesn't throw an error
+    if os.path.exists("installer.img.gz"):
+        redl = query_yes_no("It appears that the rasplex installation image has already been downloaded. Would you like to re-download it?", "no")
+    if redl == "yes" or not os.path.exists("installer.img.gz"):
+        # call the dl    
+        print "Downloading from mirror: "+current
+        download(current)
+    # now we can image
+    if mac:
+        regex = re.compile('/dev/r?(disk[0-9]+?)')
+        try:
+            disk = re.sub('r?disk', 'rdisk', regex.search(disk).group(0))
+        except:
+            print "Malformed disk specification -> ", disk
+            sys.exit()
+    imagedevice(disk, "installer.img.gz")
+    # post-install options, if supported by os
+    print "rasplex is now ready to finish setup on your Pi, please insert the SD card with an active internet connection"
+
+
+
 if __name__=="__main__":
 
     if "-m" not in sys.argv:
@@ -207,8 +207,6 @@ if __name__=="__main__":
         mirrors = autodetectMirrors(mirrors)
         current = getCurrentFromMirrors(mirrors)
 
-    print "Using current: "+current
-    exit()
 
 # check if root with geteuid
     if os.geteuid() != 0:
@@ -237,5 +235,5 @@ if __name__=="__main__":
     print "http://blog.srvthe.net"
     print "----------------------------------------"
 
-    print "This is a blatant ripoff of Sam Nazarko's raspbmc installer. All credit goes to Sam, all blame goes to Dale : )"
-    #raspbmcinstaller()
+    print "This is a blatant ripoff of Sam Nazarko's rasplex installer. All credit goes to Sam, all blame goes to Dale : )"
+    rasplexinstaller(current)
