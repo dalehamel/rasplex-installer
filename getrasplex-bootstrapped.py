@@ -166,7 +166,8 @@ def getCurrentFromMirrors( mirrors ):
         delta = tock - tick
         ping = delta.microseconds
 
-        current = dl.read().strip()
+        current = dl.read()
+        print current
 
         if bestping == None or ping < bestping:
             bestping = ping
