@@ -149,7 +149,7 @@ def autodetectMirrors( dl=None):
 
     for mirror in dl:
         mirrors.append( MIRROR_PROTOCOL+ mirror.strip() + MIRROR_FOLDER + MIRRORCHECK)
-  
+ 
     return mirrors
 
 def getCurrentFromMirrors( mirrors ):
@@ -157,7 +157,9 @@ def getCurrentFromMirrors( mirrors ):
     bestping = None
     bestmirror = None
 
+    print "Determining fastest mirror..."
     for mirror in mirrors:
+        print "Checking "+mirror
         tick =  datetime.datetime.now()
         dl = urllib2.urlopen(mirror)
         tock =  datetime.datetime.now()
