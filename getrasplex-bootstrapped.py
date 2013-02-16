@@ -196,7 +196,8 @@ def rasplexinstaller(current):
 
 
 def doInstall():
-
+    
+    print sys.argv
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
         current = getCurrentFromMirrors(mirrors)
