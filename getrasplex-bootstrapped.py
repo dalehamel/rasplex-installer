@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 
 
 MIRROR_FOLDER="/release/"
@@ -84,8 +83,7 @@ def deviceinput():
             device = "/dev/" + device
         if os.path.exists(device) == True:
             print "It is your own responsibility to ensure there is no data loss! Please backup your system before imaging"
-            print "You should also ensure you agree with the rasplex License Agreeement"
-            cont = query_yes_no("Are you sure you want to install rasplex to '\033[31m" + device + "\033[0m' and accept the license agreement?", "no")
+            cont = query_yes_no("Are you sure you want to install rasplex to '\033[31m" + device + "\033[0m' ", "no")
             if cont == "no":
                 sys.exit()
             else:
@@ -200,7 +198,6 @@ def rasplexinstaller(current):
 
 def doInstall():
     
-    print sys.argv
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
         current = getCurrentFromMirrors(mirrors)
@@ -257,7 +254,7 @@ http://srvthe.net
 
     rasplexinstaller(current)
 
-print """
+    print """
 
 Rasplex hackers:
 
