@@ -233,9 +233,46 @@ def doInstall():
         sys.exit()
 
     os.system("clear")
-    print "rasplex installer for Linux and OS X"
-    print "http://blog.srvthe.net"
-    print "----------------------------------------"
 
-    print "This is a blatant ripoff of Sam Nazarko's rasplex installer. All credit goes to Sam, all blame goes to Dale : )"
-    #rasplexinstaller(current)
+    print """
+This is the Rasplex installer for Linux and OS X"
+It is based on Sam Nazarko's rasplex installer. 
+All credit goes to Sam, all blame goes to Dale : )
+
+Read more about Rasplex at 
+http://blog.srvthe.net"
+
+If you like the project and want to support future development,
+please donate at http://srvthe.net
+
+Donations are re-invested in the project, and cover various expenses.
+This is a community driven project, and receives no funding from plex directly.
+
+Feed your developers! Donate at 
+http://srvthe.net
+
+"""
+
+    rasplexinstaller(current)
+
+print """
+
+Rasplex hackers:
+
+Dale Hamel - Lead developer, builder, hoster, creator of rasplex (stubborn Canadian)
+Robert Buhren - weelkin (lead of OpenELEC port)
+Anil Daoud - Anil (Lead of Raspbian port)
+Lionel CHAZALLON - LongChair (Lead tester, first user to join the channel)
+Marc Massey - ElMassman (god of the GUI)
+Jay Smith - jsmith79 (stellar tester, helpful hacker, front line soldier)
+
+
+Special thanks to:
+
+Sam Nazarko (as well as the whole raspbmc team) - creator of Raspbmc, on which much of this work was based
+Elan Feingold - creator of Plex - the best media center ever created
+Tobias Hieta - maintainer of PlexHT, which made this port possible
+GEWalker - creator of plex-linux, which got the ball rolling on this
+
+please donate at http://srvthe.net
+"""
