@@ -194,7 +194,7 @@ def rasplexinstaller(current):
 
 
 
-def doInstall()
+def doInstall():
 
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
