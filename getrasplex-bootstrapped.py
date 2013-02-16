@@ -164,7 +164,7 @@ def getCurrentFromMirrors( mirrors ):
         dl = urllib2.urlopen(mirror)
         tock =  datetime.datetime.now()
         delta = tock - tick
-        speed = float( 1 / ( float(delta.microseconds) / float(1000000) ))
+        speed = float( (1 / ( float(delta.microseconds) / float(1000000) )) /2)
         sys.stdout.write( "%s MB/s\n" % str(speed))
         
 
