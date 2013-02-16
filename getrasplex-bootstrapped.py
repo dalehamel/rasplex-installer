@@ -169,7 +169,7 @@ def getCurrentFromMirrors( mirrors ):
         
 
 
-        if bestping == None or speed > bestspeed:
+        if bestspeed == None or speed > bestspeed:
             bestspeed=speed
             bestmirror = mirror
     
