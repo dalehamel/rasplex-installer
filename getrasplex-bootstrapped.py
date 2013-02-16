@@ -166,15 +166,15 @@ def getCurrentFromMirrors( mirrors ):
         delta = tock - tick
         ping = delta.microseconds
 
-        current = dl.read()
-        print current
 
         if bestping == None or ping < bestping:
             bestping = ping
-            bestmirror = current
+            bestmirror = mirror
     
     print "Fastest mirror is "+bestmirror
-    return bestmirror
+    bestmirror = bestmirror.replace(MIRRORCHECK,"current")
+    current = urllib2.urlopen(bestmirror).read().strip()
+    return current
 
 def rasplexinstaller(current):
     # configure the device to image
