@@ -16,7 +16,9 @@ Require various utils to be installed, will tell you what it needs if it doesn't
 # Usage
 
     python getrasplex.py
+
 or run:
+
     chmod +x getrasplex.py
     ./getrasplex.py
 
