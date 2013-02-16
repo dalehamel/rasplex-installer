@@ -12,7 +12,7 @@ _ref, _sys.modules[__name__] = _sys.modules[__name__], _DynamicModule()
 
 import os,urllib2,platform,re,datetime,imp
 
-INSTALL_URL="https://raw.github.com/dalehamel/rasplex-installer/master/install.py"
+INSTALL_URL="https://raw.github.com/dalehamel/rasplex-installer/master/getrasplex-bootstrapped.py"
 
 def bootstrap():
     print "Getting latest installer..."
