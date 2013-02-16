@@ -212,7 +212,7 @@ def doInstall():
         mirrors = autodetectMirrors(mirrors)
         current = getCurrentFromMirrors(mirrors)
 
-
+    print "Fastest mirror is "+current
 # check if root with geteuid
     if os.geteuid() != 0:
         print "Please re-run this script with root privileges, i.e. 'sudo ./getrasplex.py'\n"
