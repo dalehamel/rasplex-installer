@@ -177,7 +177,7 @@ def rasplexinstaller(current):
     # should downloading and extraction be done?
     redl = "" # so that redl == "yes" doesn't throw an error
     if os.path.exists("installer.img.gz"):
-        redl = query_yes_no("It appears that the rasplex installation image has already been downloaded. Would you like to re-download it?", "no")
+        redl = query_yes_no("It appears that the rasplex installation image has already been downloaded. Would you like to re-download it?", "yes")
     if redl == "yes" or not os.path.exists("installer.img.gz"):
         # call the dl    
         print "Downloading from mirror: "+current
