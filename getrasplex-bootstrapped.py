@@ -172,6 +172,7 @@ def getCurrentFromMirrors( mirrors ):
             bestping = ping
             bestmirror = current
     
+    print "Fastest mirror is "+bestmirror
     return bestmirror
 
 def rasplexinstaller(current):
