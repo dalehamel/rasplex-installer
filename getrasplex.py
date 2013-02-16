@@ -1,4 +1,6 @@
 
+INSTALL_URL="https://raw.github.com/dalehamel/rasplex-installer/master/getrasplex-bootstrapped.py"
+
 class _DynamicModule(object):
     def load(self, code):
         execdict = {'__builtins__': None}
@@ -7,12 +9,11 @@ class _DynamicModule(object):
             if not key.startswith('_'):
                 setattr(self, key, execdict[key])
 
-import sys as _sys
-_ref, _sys.modules[__name__] = _sys.modules[__name__], _DynamicModule()
-
+import sys 
 import os,urllib2,platform,re,datetime,imp
+_ref, sys.modules[__name__] = sys.modules[__name__], _DynamicModule()
 
-INSTALL_URL="https://raw.github.com/dalehamel/rasplex-installer/master/getrasplex-bootstrapped.py"
+
 
 def bootstrap():
     print "Getting latest installer..."
@@ -22,6 +23,8 @@ def bootstrap():
     import getrasplex
 
     getrasplex.load(code)
+    import sys
+    getrasplex.doInstall()
 
 
 if __name__=="__main__":

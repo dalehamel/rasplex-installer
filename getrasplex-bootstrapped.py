@@ -30,6 +30,7 @@ def query_yes_no(question, default="yes"):
             print "Please respond with 'yes' or 'no' (or 'y' or 'n').\n"
 
 def chunk_report(bytes_so_far, chunk_size, total_size):
+    import sys
     percent = float(bytes_so_far) / total_size
     percent = round(percent*100, 2)
     sys.stdout.write("Downloaded %0.2f of %0.2f MiB (%0.2f%%)\r" % 
@@ -60,6 +61,7 @@ def download(url):
     dlFile.close()
 
 def deviceinput():
+    import sys
     # they must know the risks!
     verified = "no"
     raw_input("Please ensure you've inserted your SD card, and press Enter to continue.")
@@ -195,6 +197,7 @@ def rasplexinstaller(current):
 
 
 def doInstall():
+    import sys
 
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
@@ -236,4 +239,4 @@ def doInstall():
     print "----------------------------------------"
 
     print "This is a blatant ripoff of Sam Nazarko's rasplex installer. All credit goes to Sam, all blame goes to Dale : )"
-    rasplexinstaller(current)
+    #rasplexinstaller(current)
