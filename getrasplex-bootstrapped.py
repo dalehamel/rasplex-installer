@@ -3,6 +3,7 @@
 MIRROR_FOLDER="/release/"
 MIRROR_URL="https://s3.amazonaws.com/plex-rpi"+MIRROR_FOLDER+"mirrors"
 MIRROR_PROTOCOL="https://"
+MIRRORCHECK="mirrorcheck"
 
 
 import os,sys,urllib2,platform,re,datetime,imp
@@ -147,7 +148,7 @@ def autodetectMirrors( dl=None):
     mirrors = list()
 
     for mirror in dl:
-        mirrors.append( MIRROR_PROTOCOL+ mirror.strip() + MIRROR_FOLDER + "current")
+        mirrors.append( MIRROR_PROTOCOL+ mirror.strip() + MIRROR_FOLDER + MIRRORCHECK)
   
     return mirrors
 
