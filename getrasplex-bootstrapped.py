@@ -8,6 +8,9 @@ MIRROR_PROTOCOL="https://"
 
 import os,sys,urllib2,platform,re,datetime,imp
 
+# check if running on Mac
+mac = (platform.system() == 'Darwin')
+
 
 # yes/no prompt adapted from http://code.activestate.com/recipes/577058-query-yesno/
 def query_yes_no(question, default="yes"):
@@ -215,8 +218,6 @@ def doInstall():
         print "Please re-run this script with root privileges, i.e. 'sudo ./install.py'\n"
         sys.exit()
 
-# check if running on Mac
-    mac = (platform.system() == 'Darwin')
 
 # check if all necessary system utilities are present
     if mac:
@@ -234,6 +235,7 @@ def doInstall():
 
     os.system("clear")
 
+    print ""
     print """
 This is the Rasplex installer for Linux and OS X"
 It is based on Sam Nazarko's rasplex installer. 
