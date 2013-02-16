@@ -213,7 +213,7 @@ def doInstall():
 
 # check if root with geteuid
     if os.geteuid() != 0:
-        print "Please re-run this script with root privileges, i.e. 'sudo ./install.py'\n"
+        print "Please re-run this script with root privileges, i.e. 'sudo ./"__file__"'\n"
         sys.exit()
 
 
