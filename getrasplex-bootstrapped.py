@@ -6,7 +6,7 @@ MIRROR_URL="https://s3.amazonaws.com/plex-rpi"+MIRROR_FOLDER+"mirrors"
 MIRROR_PROTOCOL="https://"
 
 
-import os,urllib2,platform,re,datetime,imp
+import os,sys,urllib2,platform,re,datetime,imp
 
 
 # yes/no prompt adapted from http://code.activestate.com/recipes/577058-query-yesno/
