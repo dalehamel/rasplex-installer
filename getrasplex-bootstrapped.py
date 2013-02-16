@@ -154,21 +154,23 @@ def autodetectMirrors( dl=None):
 
 def getCurrentFromMirrors( mirrors ):
  
-    bestping = None
+    bestspeed = None
     bestmirror = None
 
     print "Determining fastest mirror..."
     for mirror in mirrors:
-        print "Checking "+mirror
+        sys.stdout.write("Checking "+mirror+"... ")
         tick =  datetime.datetime.now()
         dl = urllib2.urlopen(mirror)
         tock =  datetime.datetime.now()
         delta = tock - tick
-        ping = delta.microseconds
+        speed = float( 1 / ( float(delta.microseconds) / float(1000000) ))
+        sys.stdout.write( "%s MB/s\n" % str(speed))
+        
 
 
-        if bestping == None or ping < bestping:
-            bestping = ping
+        if bestping == None or speed > bestspeed:
+            bestspeed=speed
             bestmirror = mirror
     
     print "Fastest mirror is "+bestmirror
@@ -214,7 +216,6 @@ def doInstall():
         mirrors = autodetectMirrors(mirrors)
         current = getCurrentFromMirrors(mirrors)
 
-    print "Fastest mirror is "+current
 # check if root with geteuid
     if os.geteuid() != 0:
         print "Please re-run this script with root privileges, i.e. 'sudo ./getrasplex.py'\n"
