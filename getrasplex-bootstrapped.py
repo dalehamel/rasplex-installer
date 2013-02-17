@@ -208,6 +208,7 @@ def doInstall():
    
     if "-b" in sys.argv:
         VERSION = "bleeding"
+        print "Fetching bleeding edge build"
 
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
@@ -219,7 +220,8 @@ def doInstall():
         mirrors.append( mirror )
         mirrors = autodetectMirrors(mirrors)
         current = getCurrentFromMirrors(mirrors, VERSION)
-
+    
+    print "Will download from "+current
 # check if root with geteuid
     if os.geteuid() != 0:
         print "Please re-run this script with root privileges, i.e. 'sudo ./getrasplex.py'\n"
