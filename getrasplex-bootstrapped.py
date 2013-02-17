@@ -5,6 +5,7 @@ MIRROR_URL="https://s3.amazonaws.com/plex-rpi"+MIRROR_FOLDER+"mirrors"
 MIRROR_PROTOCOL="https://"
 MIRRORCHECK="mirrorcheck"
 
+VERSION="current"
 
 import os,sys,urllib2,platform,re,datetime,imp
 
@@ -152,7 +153,7 @@ def autodetectMirrors( dl=None):
  
     return mirrors
 
-def getCurrentFromMirrors( mirrors ):
+def getCurrentFromMirrors( mirrors, version ):
  
     bestspeed = None
     bestmirror = None
@@ -174,7 +175,7 @@ def getCurrentFromMirrors( mirrors ):
             bestmirror = mirror
     
     print "Fastest mirror is "+bestmirror
-    bestmirror = bestmirror.replace(MIRRORCHECK,"current")
+    bestmirror = bestmirror.replace(MIRRORCHECK,version)
     current = urllib2.urlopen(bestmirror).read().strip()
     return current
 
@@ -204,17 +205,20 @@ def rasplexinstaller(current):
 
 
 def doInstall():
-    
+   
+    if "-b" in sys.argv:
+        VERSION = "bleeding"
+
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
-        current = getCurrentFromMirrors(mirrors)
+        current = getCurrentFromMirrors(mirrors, VERSION)
     else:
         mirrors = list()
         mirror = sys.argv[ sys.argv.index("-m")+1]
         print "Forcing mirror "+mirror
         mirrors.append( mirror )
         mirrors = autodetectMirrors(mirrors)
-        current = getCurrentFromMirrors(mirrors)
+        current = getCurrentFromMirrors(mirrors, VERSION)
 
 # check if root with geteuid
     if os.geteuid() != 0:
