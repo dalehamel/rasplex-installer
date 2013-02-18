@@ -181,6 +181,7 @@ def getCurrentFromMirrors( mirrors, version ):
 
 def rasplexinstaller(current):
     # configure the device to image
+    print "Will install "+str( current.rsplit("/",1)[1] )
     disk = deviceinput()
     # should downloading and extraction be done?
     redl = "" # so that redl == "yes" doesn't throw an error
