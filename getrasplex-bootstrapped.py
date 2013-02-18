@@ -210,6 +210,9 @@ def doInstall():
         VERSION = "bleeding"
         print "Fetching bleeding edge build"
 
+    else:
+        VERSION="current"
+
     if "-m" not in sys.argv:
         mirrors = autodetectMirrors()
         current = getCurrentFromMirrors(mirrors, VERSION)
@@ -300,6 +303,7 @@ Rasplex hackers:
     Anil Daoud - Anil (Lead of Raspbian port)
     Lionel CHAZALLON - LongChair (Lead tester, first user to join the channel)
     Marc Massey - ElMassman (god of the GUI)
+    Andreas Weinlein - a_wein (autoupdate master)
     Jay Smith - jsmith79 (stellar tester, helpful hacker, front line soldier)
 
 
